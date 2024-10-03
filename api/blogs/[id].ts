@@ -1,9 +1,14 @@
 import { createClient } from "microcms-js-sdk"
 import "@vercel/edge"
-import isbot from "isbot-fast"
 
+const bots = [
+    'Twitterbot',
+    'facebookexternalhit',
+    'Slackbot-LinkExpanding'
+];
 export const GET  = async (req:Request):Promise<Response> => {
-    const isBot = isbot(req.headers.get('user-agent') as string)
+    const userAgent = req.headers.get('user-agent')as string;
+    const isBot = bots.some((bot) => userAgent.toLowerCase().includes(bot.toLowerCase()));
     if(!isBot) {
         return fetch('https://ogp-with-microcms.vercel.app')
     }
