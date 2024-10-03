@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider, useParams } from 'react-router-dom'
+import { createBrowserRouter, Link, RouterProvider, useParams } from 'react-router-dom'
 import App from './components/App';
 
 const router = createBrowserRouter([
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     path: "/api/blogs/:id",
     Component: ()=>{
       const params = useParams<{id:string}>();
-    return <div>blogs { params.id}</div>
+    return <div>blogs { params.id}<Link to="/">ホームへ</Link></div>
     },
   }
 ]);
