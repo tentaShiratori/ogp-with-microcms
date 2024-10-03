@@ -12,7 +12,7 @@ export const GET  = async (req:Request):Promise<Response> => {
         serviceDomain: '1zu8tyo4pl',
         apiKey: process.env.VITE_MICROCMS_KEY as string,
     })
-    const data = await client.get({ endpoint: 'blogs', contentId: url.pathname.split('/')[2] as string })
+    const data = await client.get({ endpoint: 'blogs', contentId: url.pathname.split('/')[3] as string })
     return new Response(`
         <!doctype html>
 <html lang="en">
