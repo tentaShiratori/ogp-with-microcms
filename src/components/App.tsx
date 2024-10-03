@@ -24,7 +24,7 @@ function App() {
           <meta property="og:title" content={title}/>
           <meta property="og:type" content="website"/>
           <meta property="og:url" content="{url}"/>
-          <meta property="og:image" content="{url}/ogp-img.png"/>
+          <meta property="og:image" content="https://ogp-with-microcms.vercel.app/onepiece01_luffy.png"/>
           <meta property="og:site_name" content="SmartHR（スマートHR）"/>
           <meta property="og:description" content="SmartHRは、人事・労務の業務効率化からタレントマネジメントまで、働くすべての人の生産性向上を支える、「クラウド人事労務ソフト」です。"/>
           <meta property="og:locale" content="ja_JP"/>
