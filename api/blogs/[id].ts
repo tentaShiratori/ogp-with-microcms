@@ -30,7 +30,7 @@ export const GET  = async (req:Request):Promise<Response> => {
               <meta property="og:title" content=${data.title}/>
           <meta property="og:type" content="website"/>
           <meta property="og:url" content="${req.url}"/>
-          <meta property="og:image" content="https://ogp-with-microcms.vercel.app/onepiece01_luffy.png"/>
+          <meta property="og:image" content="https://ogp-with-microcms.vercel.app/${data["ogp-title"]}"/>
           <meta property="og:site_name" content="hoge"/>
           <meta property="og:description" content="desc"/>
           <meta property="og:locale" content="ja_JP"/>
