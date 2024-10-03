@@ -1,12 +1,11 @@
 import { createClient } from "microcms-js-sdk"
 import "@vercel/edge"
 import isbot from "isbot-fast"
-import { rewrite } from "@vercel/edge"
 
 export const GET  = async (req:Request):Promise<Response> => {
     const isBot = isbot(req.headers.get('user-agent') as string)
     if(!isBot) {
-        return rewrite('/')
+        return new Response("hoge",{status:200})
     }
     const url = new URL(req.url as string, `http://${req.headers.get('host')}`)
     const client = createClient({
