@@ -9,6 +9,7 @@ const bots = [
 export const GET  = async (req:Request):Promise<Response> => {
     const userAgent = req.headers.get('user-agent')as string;
     const isBot = bots.some((bot) => userAgent.toLowerCase().includes(bot.toLowerCase()));
+    console.log(userAgent,isBot)
     if(!isBot) {
         return fetch('https://ogp-with-microcms.vercel.app')
     }
