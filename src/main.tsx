@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/blogs/:id",
+    path: "/api/blogs/:id",
     Component: ()=>{
       const params = useParams<{id:string}>();
     return <div>blogs { params.id}</div>
