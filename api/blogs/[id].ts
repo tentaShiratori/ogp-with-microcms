@@ -1,25 +1,23 @@
-import { createClient } from "microcms-js-sdk"
-import "@vercel/edge"
+import { createClient } from "microcms-js-sdk";
+import "@vercel/edge";
 
-const bots = [
-    'Twitterbot',
-    'facebookexternalhit',
-    'Slackbot-LinkExpanding'
-];
-export const GET  = async (req:Request):Promise<Response> => {
-    const userAgent = req.headers.get('user-agent')as string;
-    const isBot = bots.some((bot) => userAgent.toLowerCase().includes(bot.toLowerCase()));
-    console.log(userAgent,isBot)
-    if(!isBot) {
-        return fetch('https://ogp-with-microcms.vercel.app')
-    }
-    const url = new URL(req.url as string, `http://${req.headers.get('host')}`)
-    const client = createClient({
-        serviceDomain: '1zu8tyo4pl',
-        apiKey: process.env.VITE_MICROCMS_KEY as string,
-    })
-    const data = await client.get({ endpoint: 'blogs', contentId: url.pathname.split('/')[3] as string })
-    return new Response(`
+const bots = ["Twitterbot", "facebookexternalhit", "Slackbot-LinkExpanding"];
+export const GET = async (req: Request): Promise<Response> => {
+	const userAgent = req.headers.get("user-agent") as string;
+	const isBot = bots.some((bot) =>
+		userAgent.toLowerCase().includes(bot.toLowerCase()),
+	);
+	if (!isBot) {
+		return fetch("https://ogp-with-microcms.vercel.app");
+	}
+	const url = new URL(req.url as string, `http://${req.headers.get("host")}`);
+	const client = createClient({
+		serviceDomain: "1zu8tyo4pl",
+		apiKey: process.env.VITE_MICROCMS_KEY as string,
+	});
+	const data = await client.get({ endpoint: "blogs", contentId: url.pathname });
+	return new Response(
+		`
         <!doctype html>
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
@@ -40,10 +38,11 @@ export const GET  = async (req:Request):Promise<Response> => {
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-        `, {
-        headers: {
-        'content-type': 'text/html;charset=UTF-8'
-        },
-
-    })
-}
+        `,
+		{
+			headers: {
+				"content-type": "text/html;charset=UTF-8",
+			},
+		},
+	);
+};
