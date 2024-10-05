@@ -8,8 +8,7 @@ export const GET = async (req: Request): Promise<Response> => {
 		userAgent.toLowerCase().includes(bot.toLowerCase()),
 	);
 	if (!isBot) {
-		return new Response(req.url);
-		// return fetch("https://ogp-with-microcms.vercel.app");
+		return fetch("https://ogp-with-microcms.vercel.app");
 	}
 	const url = new URL(req.url as string, `http://${req.headers.get("host")}`);
 	const client = createClient({
