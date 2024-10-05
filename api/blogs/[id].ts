@@ -16,9 +16,14 @@ export const GET = async (req: Request): Promise<Response> => {
 		serviceDomain: "1zu8tyo4pl",
 		apiKey: process.env.VITE_MICROCMS_KEY as string,
 	});
-	const data = await client.get({ endpoint: "blogs", contentId: url.pathname });
-	return new Response(
-		`
+	const id = url.pathname.split("/")[2];
+	if (!id) {
+		return new Response("Not Found", { status: 404 });
+	}
+	try {
+		const data = await client.get({ endpoint: "blogs", contentId: id });
+		return new Response(
+			`
         <!doctype html>
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
@@ -40,10 +45,13 @@ export const GET = async (req: Request): Promise<Response> => {
   </body>
 </html>
         `,
-		{
-			headers: {
-				"content-type": "text/html;charset=UTF-8",
+			{
+				headers: {
+					"content-type": "text/html;charset=UTF-8",
+				},
 			},
-		},
-	);
+		);
+	} catch (e) {
+		return new Response("Not Found", { status: 404 });
+	}
 };
