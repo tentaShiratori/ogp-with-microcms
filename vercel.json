@@ -1,8 +1,8 @@
 {
-	"rewrites": [
-		{
-			"source": "/api/blogs/:path",
-			"destination": "/blogs/:path*"
-		}
-	]
+  "rewrites": [
+    {
+      "source": "/blogs/:id",
+      "destination": "/api/blogs/:id"
+    }
+  ]
 }
